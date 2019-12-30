@@ -9,7 +9,7 @@ import { DashboardDebts } from './Debts';
 import { DashboardSchedulers } from './Schedulers.js';
 import { convertExchangeRates } from '../Utils.js';
 
-import data from '../../data/data.js';
+import data, { AccountTypes } from '../../data/data.js';
 
 import styles from './Dashboard.module.css';
 
@@ -26,42 +26,43 @@ export default class Dashboard extends React.Component {
             goals: [],
             debts: [],
             schedulers: [],
-            total: { amount: 0, currency: 'RUB' }
+            total: { amount: 0, currency: 'RUB' },
+            totalExpenses: { amount: 0, currency: 'RUB' },
         }
     }
 
     componentDidMount() {
-        data.exchange.rates().then(() => {
-            data.dashboard.balance().then((items) => {
-                const own = items.filter(el => !el.credit);
-                const credits = items.filter(el => el.credit);
+        data.exchange.getExchangeRates().then(() => {
+            data.dashboard.getBalance().then((items) => {
+                let own = [];
+                let credits = [];
+                let currency = {};
 
-                let group = [];
+                items.forEach(item => {
+                    if (item.amount > 0 && item.type !== AccountTypes.Virtual) {
+                        if (!currency[item.currency]) {
+                            currency[item.currency] = 0;
+                        }
 
-                own.reduce((res, value) => {
-                    if (!res[value.currency]) {
-                        res[value.currency] = {
-                            id: value.currency,
-                            amount: 0,
-                            currency: value.currency
-                        };
-
-                        group.push(res[value.currency])
+                        currency[item.currency] = currency[item.currency] + item.amount;
                     }
 
-                    res[value.currency].amount += value.amount;
-
-                    return res;
-                }, {});
-
-                let total = 0;
-
-                group.forEach((item) => {
-                    total = total + convertExchangeRates(item.currency, 'RUB', item.amount);
+                    if (item.credit) {
+                        credits.push(item);
+                    }
                 });
 
+                const keys = Object.keys(currency);
+                own = keys.map(key => {
+                    return { currency: key, amount: currency[key] };
+                });
+
+                const total = items.reduce((accumulator, item) => {
+                    return accumulator = accumulator + convertExchangeRates(item.currency, 'RUB', item.amount);
+                }, 0);
+
                 this.setState({
-                    ownFunds: group,
+                    ownFunds: own,
                     creditFunds: credits,
                     accounts: items,
                     total: { amount: total, currency: 'RUB' }
@@ -72,25 +73,30 @@ export default class Dashboard extends React.Component {
         let from = moment().startOf('month');
         let to = moment().endOf('month');
 
-        data.dashboard.expenses(from.toISOString(), to.toISOString()).then((expenses) => {
+        data.dashboard.getExpenses(from.toISOString(), to.toISOString()).then((expenses) => {
+            const total = expenses.reduce((accumulator, item) => {
+                return accumulator + convertExchangeRates(item.currency, 'RUB', item.amount);
+            }, 0);
+
             this.setState({
-                expenses: expenses
+                expenses: expenses,
+                totalExpenses: { amount: total, currency: 'RUB' }
             });
         });
 
-        data.dashboard.budgets(from.toISOString(), to.toISOString()).then((budgets) => {
+        data.dashboard.getBudgets(from.toISOString(), to.toISOString()).then((budgets) => {
             this.setState({
                 budgets: budgets
             });
         });
 
-        data.dashboard.goals().then((goals) => {
+        data.dashboard.getGoals().then((goals) => {
             this.setState({
                 goals: goals
             });
         });
 
-        data.dashboard.debts().then((debts) => {
+        data.dashboard.getDebts().then((debts) => {
             this.setState({
                 debts: debts
             });
@@ -99,7 +105,7 @@ export default class Dashboard extends React.Component {
         from = moment();
         to = moment().add(31, 'd');
 
-        data.dashboard.schedulers(from.toISOString(), to.toISOString()).then((schedulers) => {
+        data.dashboard.getSchedulers(from.toISOString(), to.toISOString()).then((schedulers) => {
             this.setState({
                 schedulers: schedulers
             });
@@ -112,7 +118,7 @@ export default class Dashboard extends React.Component {
                 <div className={styles.left}>
                     <DashboardBalance total={this.state.total} own={this.state.ownFunds} credits={this.state.creditFunds} />
                     <DashboardDeposits accounts={this.state.accounts} />
-                    <DashboardExpenses expenses={this.state.expenses} />
+                    <DashboardExpenses expenses={this.state.expenses} totalExpenses={this.state.totalExpenses} />
                 </div>
                 <div className={styles.right}>
                     <DashboardSchedulers schedulers={this.state.schedulers} />

@@ -15,7 +15,7 @@ export class DashboardBalance extends React.Component {
 
                     {
                         this.props.own.map((item, i) => {
-                            return (<div key={item.id} className={styles.item}>{formatAmount(item.amount, item.currency)}</div>);
+                            return (<div key={item.currency} className={styles.item}>{formatAmount(item.amount, item.currency)}</div>);
                         })
                     }
                     </div>
@@ -31,7 +31,7 @@ export class DashboardBalance extends React.Component {
                                 amount = item.credit + item.amount;
                             }
 
-                            return (<div key={item.id} className={styles.item}>{formatAmount(amount, item.currency)}</div>);
+                            return (<div key={item.currency} className={styles.item}>{formatAmount(amount, item.currency)}</div>);
                         })
                     }
                     </div>

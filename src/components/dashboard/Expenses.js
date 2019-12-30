@@ -6,13 +6,15 @@ import styles from './Expenses.module.css';
 
 export class DashboardExpenses extends React.Component {
     render() {
-        if (this.props.expenses.length === 0) {
+        const { expenses, totalExpenses } = this.props;
+
+        if (expenses.length === 0) {
             return null;
         }
 
         let max = 0;
 
-        this.props.expenses.forEach(item => {
+        expenses.forEach(item => {
             if (item.amount > max) {
                 max = item.amount;
             }
@@ -20,10 +22,10 @@ export class DashboardExpenses extends React.Component {
 
         return (
             <div className={styles.container}>
-                <div className={styles.header}>Expenses <span className={styles.month}>{moment().format('MMMM')}</span></div>
+                <div className={styles.header}>Expenses<span className={styles.month}>{moment().format('MMMM')}</span> <div className={styles.totalAmount}>{formatAmount(totalExpenses.amount, totalExpenses.currency)}</div></div>
 
                 {
-                    this.props.expenses.map((item, i) => {
+                    expenses.map((item, i) => {
                         let percent = (item.amount / max) * 100;
 
                         if (percent < 1) {

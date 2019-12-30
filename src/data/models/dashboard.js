@@ -1,18 +1,18 @@
 const db = require('../db');
 
-export function balance() {
+export function getBalance() {
     return new Promise((resolve, reject) => {
         db.all(`SELECT a.id, a.name, a.credit_limit, c.short_name AS currency_name, a.type_id,
                     (SELECT COALESCE(SUM(to_account_amount), 0) AS sum FROM transactions WHERE to_account_id = a.id AND deleted = 0) AS receipt,
                     (SELECT COALESCE(SUM(from_account_amount), 0) AS sum FROM transactions WHERE from_account_id = a.id AND deleted = 0) AS expense
-                FROM accounts a, currencies c WHERE (a.type_id = 1 OR a.type_id = 5) AND a.active = 1 AND a.currency_id = c.id ORDER BY a.order_id`, [], (error, rows) => {
+                FROM accounts a, currencies c WHERE (a.type_id = 1 OR a.type_id = 4) AND a.active = 1 AND a.currency_id = c.id ORDER BY a.order_id`, [], (error, rows) => {
             if (error) {
                 reject(error);
             } else {
                 let items = [];
 
                 rows.forEach((row) => {
-                    let item = { id: row.id, name: row.name, receipt: row.receipt, expense: row.expense, amount: (row.receipt - row.expense), credit: row.credit_limit, currency: row.currency_name };
+                    let item = { id: row.id, name: row.name, type: row.type_id, receipt: row.receipt, expense: row.expense, amount: (row.receipt - row.expense), credit: row.credit_limit, currency: row.currency_name };
                     items.push(item);
                 });
 
@@ -22,10 +22,10 @@ export function balance() {
     });
 }
 
-export function expenses(from, to) {
+export function getExpenses(from, to) {
     return new Promise((resolve, reject) => {
         db.all(`SELECT a.id, a.name, TOTAL(t.to_account_amount) as sum FROM transactions t, accounts a
-                 WHERE a.type_id = 2 AND t.to_account_id = a.id AND t.paid_at >= ? AND t.paid_at <= ? AND t.deleted = 0 GROUP BY a.name ORDER BY sum DESC`, [from, to], (error, rows) => {
+                 WHERE (a.type_id = 2 OR a.type_id = 3) AND t.to_account_id = a.id AND t.paid_at >= ? AND t.paid_at <= ? AND t.deleted = 0 GROUP BY a.name ORDER BY sum DESC`, [from, to], (error, rows) => {
             if (error) {
                 reject(error);
             } else {
@@ -42,7 +42,7 @@ export function expenses(from, to) {
     });
 }
 
-export function budgets(from, to) {
+export function getBudgets(from, to) {
     return new Promise((resolve, reject) => {
         _getBudgets().then((items) => {
             let promises = [];
@@ -63,7 +63,7 @@ export function budgets(from, to) {
     });
 }
 
-export function goals() {
+export function getGoals() {
     return new Promise((resolve, reject) => {
         _getGoals().then((items) => {
             let promises = [];
@@ -84,7 +84,7 @@ export function goals() {
     });
 }
 
-export function debts() {
+export function getDebts() {
     return new Promise((resolve, reject) => {
         db.all(`SELECT a.id, a.name, a.credit_limit, c.short_name AS currency_name, a.type_id,
                     (SELECT COALESCE(SUM(to_account_amount), 0) AS sum FROM transactions WHERE to_account_id = a.id AND deleted = 0) AS receipt,
@@ -118,7 +118,7 @@ export function debts() {
     });
 }
 
-export function schedulers(from, to) {
+export function getSchedulers(from, to) {
     return new Promise((resolve, reject) => {
         db.all(`SELECT s.id, s.name, s.from_account_amount, s.to_account_amount, s.next_date FROM schedulers s
                  WHERE s.next_date >= ? AND s.next_date <= ? AND s.active = 1 ORDER BY s.id`, [from, to], (error, rows) => {

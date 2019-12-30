@@ -2,7 +2,7 @@ const db = require('../db');
 
 export const exchangeRates = {};
 
-export function rates() {
+export function getExchangeRates() {
     return new Promise((resolve, reject) => {
         db.all(`SELECT er.from_currency_id, cf.short_name AS from_name, er.to_currency_id, ct.short_name AS to_name, rate, count, MAX(date)
                   FROM exchange_rates er, currencies cf, currencies ct
