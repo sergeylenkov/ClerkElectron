@@ -1,6 +1,6 @@
 .table {
     position: relative;
-    margin: 20px 0;
+    margin: 0;
     width: 100%;
     display: table;
     border-collapse: collapse;
@@ -8,7 +8,7 @@
 
 .row {
     width: 100%;
-    display: table-row;    
+    display: table-row;
 }
 
 .row.header {
@@ -43,32 +43,32 @@
 
 .progressHeader0 {
     margin: auto auto auto 0;
-    font-size: 10px;
+    font-size: 11px;
     color: #979797;
 }
 
 .progressHeader100 {
     margin: auto 0 auto auto;
-    font-size: 10px;
+    font-size: 11px;
     color: #979797;
 }
 
 .name {
     padding: 0 20px 0 0;
-    font-size: 12px;
+    font-size: 11px;
     white-space: nowrap;
 }
 
 .amount {
     padding: 0 0 0 20px;
-    font-size: 12px;
+    font-size: 11px;
     white-space: nowrap;
     text-align: right;
 }
 
 .remain {
     padding: 0 0 0 20px;
-    font-size: 12px;
+    font-size: 11px;
     white-space: nowrap;
     text-align: right;
 }

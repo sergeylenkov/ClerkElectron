@@ -1,5 +1,5 @@
 .container {
-    margin: 20px;
+    margin: 0 20px 20px 20px;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
 
 .header {
     margin: 20px 0 10px 0;
-    font-size: 18px;
+    font-size: 16px;
     color: #000000;
 }
 
@@ -21,7 +21,7 @@
 
 .row {
     width: 100%;
-    display: table-row;    
+    display: table-row;
 }
 
 .row.header {
