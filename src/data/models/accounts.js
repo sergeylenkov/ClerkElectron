@@ -1,6 +1,6 @@
 import db from '../db.js';
 
-export function all() {
+export function getAll() {
     return new Promise((resolve, reject) => {
         let accounts = [];
 
@@ -19,7 +19,7 @@ export function all() {
     });
 }
 
-export function active() {
+export function getActive() {
     return new Promise((resolve, reject) => {
         let accounts = [];
 
@@ -38,7 +38,7 @@ export function active() {
     });
 }
 
-export function byType(type) {
+export function getByType(type) {
     return new Promise((resolve, reject) => {
         let accounts = [];
 

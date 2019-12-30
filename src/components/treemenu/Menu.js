@@ -33,22 +33,27 @@ export default class TreeMenu extends React.Component {
 		this.state = {
 			accounts: [],
 			selectedType: TreeMenuTypes.Dashboard,
-			selectedObject: null
+			selectedObject: null,
+			isTrashFull: false
 		}
 
 		this.onSelect = this.onSelect.bind(this)
 	}
 
 	componentDidMount() {
-		data.accounts.all().then(accounts => {
-			this.setState({
-				accounts: accounts
+		data.transactions.getDeletedCount().then(count => {
+			data.accounts.getAll().then(accounts => {
+				this.setState({
+					accounts: accounts,
+					isTrashFull: Boolean(count)
+				});
 			});
 		});
 	}
 
 	render() {
 		let accounts = this.getAccounts();
+		let trashIcon = this.state.isTrashFull ? TreeMenuIcons.trashFull : TreeMenuIcons.trashEmpty;
 
     	return (
     	  	<div className={styles.container}>
@@ -121,7 +126,7 @@ export default class TreeMenu extends React.Component {
 					key={TreeMenuTypes.Trash}
 					type={TreeMenuTypes.Trash}
 					label="Trash"
-					icon={TreeMenuIcons.trashEmpty}
+					icon={trashIcon}
 					isSelected={this.state.selectedType === TreeMenuTypes.Trash}
 					onSelect={this.onSelect} />
       		</div>
