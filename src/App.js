@@ -3,6 +3,7 @@ import SplitPane from 'react-split-pane';
 import TreeMenu, { TreeMenuTypes } from './components/treemenu/Menu.js';
 import Dashboard from './components/dashboard/Dashboard.js';
 import Transactions from './components/transactions/Transactions.js';
+import Reports from './components/reports/Reports.js';
 
 import styles from './App.module.css';
 
@@ -28,6 +29,11 @@ export default class App extends React.Component {
 			case TreeMenuTypes.Accounts:
 				page = <Transactions />
 				break;
+
+			case TreeMenuTypes.Reports:
+				page = <Reports />
+				break;
+
 			default:
 				page = null;
 		}
