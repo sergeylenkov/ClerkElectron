@@ -248,6 +248,6 @@ export default class TreeMenu extends React.Component {
 			selectedObject: object
 		});
 
-		this.props.onSelect();
+		this.props.onSelect(type, object);
 	}
 }

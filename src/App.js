@@ -1,7 +1,8 @@
 import React from 'react';
 import SplitPane from 'react-split-pane';
-import TreeMenu from './components/treemenu/Menu.js';
+import TreeMenu, { TreeMenuTypes } from './components/treemenu/Menu.js';
 import Dashboard from './components/dashboard/Dashboard.js';
+import Transactions from './components/transactions/Transactions.js';
 
 import styles from './App.module.css';
 
@@ -17,6 +18,20 @@ export default class App extends React.Component {
 	}
 
 	render() {
+		let page = null;
+
+		switch (this.state.selectedPage) {
+			case TreeMenuTypes.Dashboard:
+				page = <Dashboard />
+				break;
+
+			case TreeMenuTypes.Accounts:
+				page = <Transactions />
+				break;
+			default:
+				page = null;
+		}
+
     	return (
     	  	<div className={styles.container}>
 			  	<div className={styles.toolbar}>
@@ -26,8 +41,8 @@ export default class App extends React.Component {
 						<div className={styles.leftPanel}>
 							<TreeMenu onSelect={this.onMenuSelect} />
 						</div>
-						<div>
-							<Dashboard />
+						<div className={styles.rigthPanel}>
+							{page}
 						</div>
 					</SplitPane>
 				</div>
@@ -37,7 +52,9 @@ export default class App extends React.Component {
     	);
 	  }
 
-	  onMenuSelect() {
-
-	  }
+	onMenuSelect(type, object) {
+		this.setState({
+			selectedPage: type
+		})
+	}
 }
