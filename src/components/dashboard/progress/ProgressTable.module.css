@@ -76,7 +76,6 @@
 .current {
     position: absolute;
     font-size: 10px;
-    font-weight: bold;
     bottom: -16px;
     white-space: nowrap;
 }
