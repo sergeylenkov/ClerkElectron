@@ -1,5 +1,6 @@
 const electron = require('electron');
 const path = require('path');
+const settings = require('./settings.js');
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
@@ -9,8 +10,8 @@ let mainWindow;
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 1200,
-        height: 1000,
+        width: settings.getValue('WindowWidth', 800),
+        height: settings.getValue('WindowHeight', 600),
         title: 'Clerk',
         icon: __dirname + '/assets/icon.ico',
         backgroundColor: '#ffffff',

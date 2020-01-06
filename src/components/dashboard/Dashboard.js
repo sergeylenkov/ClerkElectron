@@ -73,7 +73,7 @@ export default class Dashboard extends React.Component {
         let from = moment().startOf('month');
         let to = moment().endOf('month');
 
-        data.dashboard.getExpenses(from.toISOString(), to.toISOString()).then((expenses) => {
+        data.dashboard.getExpenses(from, to).then((expenses) => {
             const total = expenses.reduce((accumulator, item) => {
                 return accumulator + convertExchangeRates(item.currency, 'RUB', item.amount);
             }, 0);
@@ -84,7 +84,7 @@ export default class Dashboard extends React.Component {
             });
         });
 
-        data.dashboard.getBudgets(from.toISOString(), to.toISOString()).then((budgets) => {
+        data.dashboard.getBudgets(from, to).then((budgets) => {
             this.setState({
                 budgets: budgets
             });
@@ -105,7 +105,7 @@ export default class Dashboard extends React.Component {
         from = moment();
         to = moment().add(31, 'd');
 
-        data.dashboard.getSchedulers(from.toISOString(), to.toISOString()).then((schedulers) => {
+        data.dashboard.getSchedulers(from, to).then((schedulers) => {
             this.setState({
                 schedulers: schedulers
             });

@@ -25,7 +25,8 @@ export function getBalance() {
 export function getExpenses(from, to) {
     return new Promise((resolve, reject) => {
         db.all(`SELECT a.id, a.name, TOTAL(t.to_account_amount) as sum FROM transactions t, accounts a
-                 WHERE (a.type_id = 2 OR a.type_id = 3) AND t.to_account_id = a.id AND t.paid_at >= ? AND t.paid_at <= ? AND t.deleted = 0 GROUP BY a.name ORDER BY sum DESC`, [from, to], (error, rows) => {
+                 WHERE (a.type_id = 2 OR a.type_id = 3) AND t.to_account_id = a.id AND t.paid_at >= ? AND t.paid_at <= ? AND t.deleted = 0
+                 GROUP BY a.name ORDER BY sum DESC`, [from.toISOString(), to.toISOString()], (error, rows) => {
             if (error) {
                 reject(error);
             } else {
@@ -121,7 +122,7 @@ export function getDebts() {
 export function getSchedulers(from, to) {
     return new Promise((resolve, reject) => {
         db.all(`SELECT s.id, s.name, s.from_account_amount, s.to_account_amount, s.next_date FROM schedulers s
-                 WHERE s.next_date >= ? AND s.next_date <= ? AND s.active = 1 ORDER BY s.id`, [from, to], (error, rows) => {
+                 WHERE s.next_date >= ? AND s.next_date <= ? AND s.active = 1 ORDER BY s.id`, [from.toISOString(), to.toISOString()], (error, rows) => {
             if (error) {
                 reject(error);
             } else {
@@ -160,7 +161,7 @@ function _getBudgets() {
 function _getBudgetBalance(ids, from, to) {
     return new Promise((resolve, reject) => {
         db.get(`SELECT TOTAL(t.to_account_amount) AS sum FROM transactions t, accounts a
-                 WHERE a.type_id = 2 AND t.to_account_id IN(${ids}) AND t.to_account_id = a.id AND t.paid_at >= ? AND t.paid_at <= ? AND t.deleted = 0`, [from, to], (error, row) => {
+                 WHERE a.type_id = 2 AND t.to_account_id IN(${ids}) AND t.to_account_id = a.id AND t.paid_at >= ? AND t.paid_at <= ? AND t.deleted = 0`, [from.toISOString(), to.toISOString()], (error, row) => {
             if (error) {
                 reject(error);
             } else {
@@ -197,9 +198,9 @@ function _getGoalBalance(ids) {
             } else {
                 const receipt = row.sum;
 
-                db.get(`SELECT TOTAL(from_account_amount) AS sum FROM transactions WHERE from_account_id IN(${ids}) AND deleted = 0`, [], (err, row) => {
-                    if (err) {
-                        reject(err);
+                db.get(`SELECT TOTAL(from_account_amount) AS sum FROM transactions WHERE from_account_id IN(${ids}) AND deleted = 0`, [], (error, row) => {
+                    if (error) {
+                        reject(error);
                     } else {
                         const expense = row.sum;
                         const balance = receipt - expense;
