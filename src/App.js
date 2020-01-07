@@ -54,8 +54,6 @@ export default class App extends React.Component {
 						</div>
 					</SplitPane>
 				</div>
-				<div className={styles.statusbar}>
-				</div>
       		</div>
     	);
 	  }

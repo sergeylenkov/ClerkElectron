@@ -20,12 +20,6 @@
 	flex-grow: 1;
 }
 
-.statusbar {
-	width: 100%;
-	height: 20px;
-	flex-shrink: 0;
-}
-
 .leftPanel {
 	height: 100%;
 	background-color: rgb(250, 251, 252);

@@ -4,13 +4,12 @@
     padding: 0 10px;
     box-sizing: border-box;
     display: flex;
-    flex-shrink: 0;
-    position: relative;
+    flex-direction: row;
+    cursor: pointer;
 }
 
 .fromName {
     margin: auto 0;
-    width: 160px;
     font-size: 11px;
     text-align: left;
     overflow: hidden;
@@ -19,8 +18,7 @@
 }
 
 .toName {
-    margin: auto 0 auto 30px;
-    width: 160px;
+    margin: auto 0;
     font-size: 11px;
     text-align: left;
     overflow: hidden;
@@ -28,8 +26,13 @@
     white-space: nowrap;
 }
 
+.divider {
+    margin: auto 5px;
+    color: #8a8a8a;
+}
+
 .tags {
-    margin: auto 0;
+    margin: auto 0 auto 10px;
     display: flex;
     flex-wrap: nowrap;
 }

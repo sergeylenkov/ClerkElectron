@@ -11,8 +11,9 @@ export default class ToolbarAddPanelItem extends React.Component {
 
     render() {
         return (
-            <button className={styles.container} onClick={this.onClick}>
+            <div className={styles.container} onClick={this.onClick}>
                 <div className={styles.fromName}>{this.props.item.fromName}</div>
+                <div className={styles.divider}>&#8250;</div>
                 <div className={styles.toName}>{this.props.item.toName}</div>
                 <div className={styles.tags}>
                     {
@@ -21,7 +22,7 @@ export default class ToolbarAddPanelItem extends React.Component {
                         })
                     }
                 </div>
-            </button>
+            </div>
         );
     }
 
