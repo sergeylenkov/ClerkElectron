@@ -1,6 +1,7 @@
 import React from 'react';
 import SplitPane from 'react-split-pane';
 import TreeMenu, { TreeMenuTypes } from './components/treemenu/Menu.js';
+import Toolbar from './components/toolbar/Toolbar';
 import Dashboard from './components/dashboard/Dashboard.js';
 import Transactions from './components/transactions/Transactions.js';
 import Reports from './components/reports/Reports.js';
@@ -41,6 +42,7 @@ export default class App extends React.Component {
     	return (
     	  	<div className={styles.container}>
 			  	<div className={styles.toolbar}>
+					  <Toolbar />
 				</div>
         		<div className={styles.content}>
 					<SplitPane split="vertical" minSize={300} defaultSize={300} resizerClassName={styles.resizer}>
