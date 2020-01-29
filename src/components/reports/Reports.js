@@ -73,9 +73,9 @@ export default class Reports extends React.Component {
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={this.state.data}>
                                 <Line dataKey="total" stroke="#2196f3" isAnimationActive={false} />
-                                <Tooltip content={this.getTooltip} />
-                                <XAxis dataKey="formattedDate" />
-                                <YAxis />
+                                <Tooltip content={this.getTooltip} isAnimationActive={false} />
+                                <XAxis axisLine={false} tickSize={4} dataKey="formattedDate" />
+                                <YAxis axisLine={false} tickSize={4} />
                                 <CartesianGrid strokeDasharray="5 5" />
                             </LineChart>
                         </ResponsiveContainer>

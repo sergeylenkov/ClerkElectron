@@ -1,10 +1,9 @@
 import React from 'react';
+import styled from 'styled-components';
 import TreeMenuItem from './Item.js';
 import { TreeMenuIcons } from '../../assets/menu/Icons.js';
 import { AccountsIcons } from '../../assets/accounts/Icons.js';
 import data, { AccountTypes } from '../../data/data.js';
-
-import styles from './Menu.module.css';
 
 export const TreeMenuTypes = {
 	Dashboard: 0,
@@ -25,6 +24,17 @@ export const TreeMenuTypes = {
 	Trash: 15,
 
 }
+
+const Container = styled.div`
+	position: relative;
+
+	width: 100%;
+	max-height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+`
 
 export default class TreeMenu extends React.Component {
 	constructor(props) {
@@ -56,7 +66,7 @@ export default class TreeMenu extends React.Component {
 		let trashIcon = this.state.isTrashFull ? TreeMenuIcons.trashFull : TreeMenuIcons.trashEmpty;
 
     	return (
-    	  	<div className={styles.container}>
+    	  	<Container>
 				<TreeMenuItem
 					key={TreeMenuTypes.Dashboard}
 					type={TreeMenuTypes.Dashboard}
@@ -129,7 +139,7 @@ export default class TreeMenu extends React.Component {
 					icon={trashIcon}
 					isSelected={this.state.selectedType === TreeMenuTypes.Trash}
 					onSelect={this.onSelect} />
-      		</div>
+      		</Container>
     	);
 	}
 
