@@ -28,8 +28,10 @@ export const TreeMenuTypes = {
 const Container = styled.div`
 	position: relative;
 
-	width: 100%;
+    width: calc(100% + 15px);
 	max-height: 100%;
+
+	margin: 0 0 0 -15px;
 
 	display: flex;
 	flex-direction: column;

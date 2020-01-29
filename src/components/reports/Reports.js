@@ -1,11 +1,43 @@
 import React from 'react';
+import styled from 'styled-components';
 import moment from 'moment';
 import { LineChart, Line, ResponsiveContainer, Tooltip, YAxis, XAxis, CartesianGrid } from 'recharts';
-import { formatAmount } from '../Utils.js';
+import ExpensesTooltip from './ExpensesTooltip';
 
 import data from '../../data/data.js';
 
-import styles from './Reports.module.css';
+const Container = styled.div`
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+`
+
+const FilterContainer = styled.div`
+    width: 100%;
+    height: 40px;
+
+    flex-shrink: 0;
+`
+
+const Content = styled.div`
+    width: 100%;
+
+    flex-grow: 1;
+    flex-shrink: 0;
+    display: flex;
+`
+
+const ReportContainer = styled.div`
+    width: 600px;
+    height: 600px;
+
+    margin: auto;
+
+    font-size: 12px;
+`
 
 export default class Reports extends React.Component {
     constructor(props) {
@@ -64,55 +96,24 @@ export default class Reports extends React.Component {
         }
 
         return (
-            <div className={styles.container}>
-                <div className={styles.filter}>
-
-                </div>
-                <div className={styles.content} ref={this.refContentCallback}>
-                    <div className={styles.report} style={reportStyle}>
+            <Container>
+                <FilterContainer>
+                </FilterContainer>
+                <Content ref={this.refContentCallback}>
+                    <ReportContainer style={reportStyle}>
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart data={this.state.data}>
                                 <Line dataKey="total" stroke="#2196f3" isAnimationActive={false} />
-                                <Tooltip content={this.getTooltip} isAnimationActive={false} />
+                                <Tooltip content={<ExpensesTooltip />} isAnimationActive={false} />
                                 <XAxis axisLine={false} tickSize={4} dataKey="formattedDate" />
                                 <YAxis axisLine={false} tickSize={4} />
                                 <CartesianGrid strokeDasharray="5 5" />
                             </LineChart>
                         </ResponsiveContainer>
-                    </div>
-                </div>
-            </div>
+                    </ReportContainer>
+                </Content>
+            </Container>
         )
-    }
-
-    getTooltip(data) {
-        if (data && data.active) {
-            const payload = data.payload[0].payload;
-            const formattedDate = payload.date.format('MMM YYYY');
-
-            return (
-                <div className={styles.tooltip}>
-                    <div className={styles.tooltipHeader}>
-                        <div className={styles.tooltipDate}>{formattedDate}</div>
-                        <div className={styles.tooltipTotal}>{formatAmount(payload.total, 'RUB')}</div>
-                    </div>
-                    <div className={styles.tooltipContent}>
-                    {
-                        payload.expenses.map((item, i) => {
-                            return (
-                                <div key={i} className={styles.tooltipItem}>
-                                    <div className={styles.tooltipName}>{item.name}</div>
-                                    <div className={styles.tooltipAmount}>{formatAmount(item.amount, 'RUB')}</div>
-                                </div>
-                            );
-                        })
-                    }
-                    </div>
-                </div>
-            )
-        }
-
-        return '';
     }
 
     calculateReportPosition() {

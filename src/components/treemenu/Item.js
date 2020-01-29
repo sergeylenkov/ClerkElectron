@@ -82,7 +82,7 @@ const Selection = styled.div`
 
 	z-index: 0;
 
-	${Container}:hover & {
+	${Item}:hover & {
 		background-color: rgb(224, 224, 224);
 	}
 `
