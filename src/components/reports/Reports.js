@@ -77,8 +77,7 @@ export default class Reports extends React.Component {
             });
         });
 
-        this.updateDimensions = this.updateDimensions.bind(this)
-        this.getTooltip = this.getTooltip.bind(this);
+        this.updateDimensions = this.updateDimensions.bind(this);
     }
 
     componentDidMount() {
