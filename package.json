@@ -19,6 +19,7 @@
     "styled-components": "^5.2.1"
   },
   "main": "src/main.ts",
+  "type": "module",
   "scripts": {
     "start": "set BROWSER=none && react-scripts start",
     "build": "react-scripts build",
@@ -45,6 +46,8 @@
   },
   "devDependencies": {
     "@types/node": "^14.14.10",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "electron": "^11.0.3",
     "electron-rebuild": "^1.11.0",
     "eslint": "^7.15.0",
