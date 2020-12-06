@@ -5,16 +5,16 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
+    "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "moment": "^2.24.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "^3.3.0",
-    "react-split-pane": "^0.1.89",
-    "recharts": "^2.0.0-beta.1",
-    "sqlite3": "^4.0.6",
-    "styled-components": "^5.0.0"
+    "moment": "^2.29.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-scripts": "^3.4.4",
+    "react-split-pane": "^0.1.92",
+    "recharts": "^2.0.0-beta.8",
+    "sqlite3": "^4.2.0",
+    "styled-components": "^5.2.1"
   },
   "main": "src/main.js",
   "scripts": {
@@ -41,7 +41,7 @@
     ]
   },
   "devDependencies": {
-    "electron": "^7.1.7",
-    "electron-rebuild": "^1.8.8"
+    "electron": "^7.3.3",
+    "electron-rebuild": "^1.11.0"
   }
 }
