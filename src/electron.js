@@ -1,14 +1,17 @@
-import { app, BrowserWindow } from 'electron';
-import * as path from 'path';
+const electron = require('electron');
+const path = require('path');
+const settings = require('./settings.js');
 
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
 const isDev = true;
 
-let mainWindow: BrowserWindow | null;
+let mainWindow;
 
-function createWindow(): void {
+function createWindow() {
     mainWindow = new BrowserWindow({
-        width: 800,//settings.getValue('WindowWidth', 800),
-        height: 600,//settings.getValue('WindowHeight', 600),
+        width: settings.getValue('WindowWidth', 800),
+        height: settings.getValue('WindowHeight', 600),
         title: 'Clerk',
         icon: __dirname + '/assets/icon.ico',
         backgroundColor: '#ffffff',

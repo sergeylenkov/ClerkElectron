@@ -5,32 +5,19 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "@types/d3-scale": "^3.2.1",
-    "@types/d3-shape": "^2.0.0",
-    "moment": "^2.29.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-scripts": "^3.4.4",
-    "react-split-pane": "^0.1.92",
-    "recharts": "^2.0.0-beta.8",
-    "sqlite3": "^4.2.0",
-    "styled-components": "^5.2.1"
+    "sqlite3": "^4.2.0"
   },
-  "main": "src/main.ts",
-  "type": "module",
+  "main": "src/electron.js",
   "scripts": {
-    "start": "set BROWSER=none && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "electron": "electron .",
+    "start": "",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "webpack": "webpack",
+    "webpack:watch": "webpack --watch",
+    "electron": "electron ./src/electron.js",
     "rebuild": "electron-rebuild -f -w sqlite3",
     "lint": "eslint -c .eslintrc --ext .ts ./src"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -45,12 +32,18 @@
     ]
   },
   "devDependencies": {
+    "@types/electron": "^1.6.10",
     "@types/node": "^14.14.10",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "electron": "^11.0.3",
+    "css-loader": "^5.0.1",
+    "electron": "11.1.0",
     "electron-rebuild": "^1.11.0",
     "eslint": "^7.15.0",
-    "typescript": "^4.1.2"
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.12",
+    "typescript": "^4.1.2",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.2.0"
   }
 }
