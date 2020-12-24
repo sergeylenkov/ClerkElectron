@@ -4,7 +4,6 @@ const settings = require('./settings.js');
 
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
-const isDev = true;
 
 let mainWindow;
 
@@ -18,7 +17,7 @@ function createWindow() {
         webPreferences: { nodeIntegration: true }
     });
 
-    const url = isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`;
+    const url = `file://${path.join(__dirname, '../build/index.html')}`;
     mainWindow.loadURL(url);
 
     mainWindow.on('closed', function() {
