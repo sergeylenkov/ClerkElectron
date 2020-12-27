@@ -1,0 +1,13 @@
+@import '../styles/mixins.scss';
+
+.tree-menu {
+  &__container {
+    @include flex-column;
+
+    position: relative;
+    width: calc(100% + 15px);
+    max-height: 100%;
+    margin: 0 0 0 -15px;
+    overflow: auto;
+  }
+}
