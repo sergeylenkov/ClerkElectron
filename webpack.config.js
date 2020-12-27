@@ -23,7 +23,12 @@ module.exports = {
         test: /\.s(a|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader:'css-loader',
+            options: {
+              url: false
+            }
+          },
           {
             loader: 'sass-loader',
             options: {
@@ -44,7 +49,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/assets', to: 'build/static' }
+        { from: 'src/assets', to: 'static' }
       ]
     })
   ]

@@ -33,9 +33,12 @@
     margin: auto 5px auto 0;
     width: 12px;
     height: 12px;
-    background-image: url('./assets/menu/arrow.png');
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  &__arrow {
+    background-image: url('static/menu/arrow.png');
   }
 
   &__label {

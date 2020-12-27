@@ -1,5 +1,7 @@
 import { Element } from '../core/element';
 
+import './item.scss';
+
 export class TreeMenuItem extends Element {
   private readonly _content: Element;
   private readonly _selection: Element;
@@ -18,6 +20,7 @@ export class TreeMenuItem extends Element {
 
     this._content.appendTo(this);
 
+    this._selection.appendTo(this._content);
     this._icon.appendTo(this._content);
     this._label.appendTo(this._content);
     this._arrow.appendTo(this._content);
