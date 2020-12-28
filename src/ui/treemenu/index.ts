@@ -13,6 +13,20 @@ export class TreeMenu extends Element {
     dashboard.icon = 'static/menu/0.png';
 
     dashboard.appendTo(this);
+
+    const accounts = new TreeMenuItem();
+
+    accounts.label = 'Accounts';
+    accounts.icon = 'static/menu/1.png';
+
+    accounts.appendTo(this);
+
+    const reports = new TreeMenuItem();
+
+    reports.label = 'Reports';
+    reports.icon = 'static/menu/4.png';
+
+    reports.appendTo(this);
   }
 
   update(): void {
