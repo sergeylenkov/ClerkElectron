@@ -4,6 +4,7 @@
   "author": "Sergey Lenkov",
   "private": true,
   "dependencies": {
+    "i18next": "^19.8.4",
     "sqlite3": "^4.2.0"
   },
   "main": "src/electron.js",
