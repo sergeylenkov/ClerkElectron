@@ -1,6 +1,8 @@
 @import '../styles/mixins.scss';
 
 .tree-menu-item {
+  $self: &;
+
   &__container {
     @include flex-column;
 
@@ -35,15 +37,17 @@
     height: 12px;
     background-repeat: no-repeat;
     background-size: cover;
+    background-image: url('static/menu/arrow.png');
+    visibility: hidden;
     transform: rotate(-90deg);
 
     &--expanded {
       transform: rotate(0deg);
     }
-  }
 
-  &__arrow {
-    background-image: url('static/menu/arrow.png');
+    #{ $self }__container__expandable & {
+      visibility: visible;
+    }
   }
 
   &__label {

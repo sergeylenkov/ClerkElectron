@@ -21,6 +21,14 @@ export class Element {
     this._element.className = className;
   }
 
+  addClass(className: string): void {
+    this._element.classList.add(className);
+  }
+
+  removeClass(className: string): void {
+    this._element.classList.remove(className);
+  }
+
   appendTo(parent: HTMLElement | Element): void {
     if (parent instanceof Element) {
       parent.element.appendChild(this._element);

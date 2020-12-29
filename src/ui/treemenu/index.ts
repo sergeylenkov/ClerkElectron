@@ -11,6 +11,7 @@ export class TreeMenu extends Element {
 
     dashboard.label = 'Dashboard';
     dashboard.icon = 'static/menu/0.png';
+    dashboard.expandable = false;
 
     dashboard.appendTo(this);
 
@@ -18,6 +19,7 @@ export class TreeMenu extends Element {
 
     accounts.label = 'Accounts';
     accounts.icon = 'static/menu/1.png';
+    accounts.expandable = true;
 
     accounts.appendTo(this);
 
@@ -25,6 +27,7 @@ export class TreeMenu extends Element {
 
     reports.label = 'Reports';
     reports.icon = 'static/menu/4.png';
+    reports.expandable = true;
 
     reports.appendTo(this);
   }
