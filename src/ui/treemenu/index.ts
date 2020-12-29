@@ -1,6 +1,6 @@
 import { Element } from '../core/element';
 import { TreeMenuItem } from './item';
-import { t } from '../../locales';
+import { t, strings } from '../../locales';
 
 import './index.scss';
 
@@ -10,7 +10,7 @@ export class TreeMenu extends Element {
 
     const dashboard = new TreeMenuItem();
 
-    dashboard.label = t('treeMenu.dashboard');
+    dashboard.label = t(strings.treeMenu.dashboard);
     dashboard.icon = 'static/menu/0.png';
     dashboard.expandable = false;
 
@@ -18,7 +18,7 @@ export class TreeMenu extends Element {
 
     const accounts = new TreeMenuItem();
 
-    accounts.label = t('treeMenu.accounts');
+    accounts.label = t(strings.treeMenu.accounts);
     accounts.icon = 'static/menu/1.png';
     accounts.expandable = true;
 
@@ -26,7 +26,7 @@ export class TreeMenu extends Element {
 
     const reports = new TreeMenuItem();
 
-    reports.label = t('treeMenu.reports');
+    reports.label = t(strings.treeMenu.reports);
     reports.icon = 'static/menu/4.png';
     reports.expandable = true;
 
