@@ -3,5 +3,10 @@
     "dashboard": "Обзор",
     "accounts": "Счета",
     "reports": "Отчеты"
+  },
+  "dashboard": {
+    "total": "Всего",
+    "ownFund": "Собственные средства",
+    "creditFund": "Кредитные средства"
   }
 }

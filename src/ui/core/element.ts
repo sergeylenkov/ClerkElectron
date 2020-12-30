@@ -1,9 +1,10 @@
-interface ElementOptions {
+export interface ElementOptions {
   className: string;
 }
 
 export class Element {
-  private readonly _element: HTMLElement;
+  protected readonly _element: HTMLElement;
+  private _children: Element[] = [];
 
   constructor(type: string, options?: ElementOptions) {
     this._element = document.createElement(type);
@@ -35,5 +36,15 @@ export class Element {
     } else {
       parent.appendChild(this._element);
     }
+  }
+
+  appendChild(child: Element): void {
+    this._children.push(child);
+    this._element.appendChild(child.element);
+  }
+
+  detach(): void {
+    this._children.forEach(child => child.detach());
+    this._element.remove();
   }
 }

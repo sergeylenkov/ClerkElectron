@@ -1,29 +1,35 @@
 import { Element } from './core/element';
 import { TreeMenu } from './treemenu';
+import { Dashboard } from './dashboard';
 
 import './app.scss';
 
 export class App {
-  private readonly container: Element;
-  private readonly leftContainer: Element;
-  private readonly rightContainer: Element;
-  private readonly treeMenu: TreeMenu;
+  private readonly _container: Element;
+  private readonly _leftPanel: Element;
+  private readonly _rightPanel: Element;
+  private readonly _treeMenu: TreeMenu;
+  private readonly _dashboard: Dashboard;
 
   constructor(parent: HTMLElement) {
-    this.container = new Element('div', { className: 'app__container' });
-    this.container.appendTo(parent);
+    this._container = new Element('div', { className: 'app__container' });
+    this._container.appendTo(parent);
 
-    this.leftContainer = new Element('div', { className: 'app__left' });
-    this.leftContainer.appendTo(this.container.element);
+    this._leftPanel = new Element('div', { className: 'app__left' });
+    this._container.appendChild(this._leftPanel);
 
-    this.rightContainer = new Element('div', { className: 'app__right' });
-    this.rightContainer.appendTo(this.container.element);
+    this._rightPanel = new Element('div', { className: 'app__right' });
+    this._container.appendChild(this._rightPanel);
 
-    this.treeMenu = new TreeMenu();
-    this.treeMenu.appendTo(this.leftContainer);
+    this._treeMenu = new TreeMenu();
+    this._leftPanel.appendChild(this._treeMenu);
+
+    this._dashboard = new Dashboard();
+    this._rightPanel.appendChild(this._dashboard);
   }
 
   update(): void {
-    this.treeMenu.update();
+    this._treeMenu.update();
+    this._dashboard.update();
   }
 }

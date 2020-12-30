@@ -14,7 +14,7 @@ export class TreeMenu extends Element {
     dashboard.icon = 'static/menu/0.png';
     dashboard.expandable = false;
 
-    dashboard.appendTo(this);
+    this.appendChild(dashboard);
 
     const accounts = new TreeMenuItem();
 
@@ -22,7 +22,7 @@ export class TreeMenu extends Element {
     accounts.icon = 'static/menu/1.png';
     accounts.expandable = true;
 
-    accounts.appendTo(this);
+    this.appendChild(accounts);
 
     const reports = new TreeMenuItem();
 
@@ -30,7 +30,7 @@ export class TreeMenu extends Element {
     reports.icon = 'static/menu/4.png';
     reports.expandable = true;
 
-    reports.appendTo(this);
+    this.appendChild(reports);
   }
 
   update(): void {

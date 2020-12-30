@@ -3,5 +3,10 @@
     "dashboard": "Dashboard",
     "accounts": "Accounts",
     "reports": "Reports"
+  },
+  "dashboard": {
+    "total": "Total",
+    "ownFund": "Own funds",
+    "creditFund": "Credit funds"
   }
 }
