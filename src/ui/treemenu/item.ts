@@ -1,7 +1,5 @@
 import { Element } from '../core/element';
 
-import './item.scss';
-
 export class TreeMenuItem extends Element {
   private readonly _content: Element;
   private readonly _selection: Element;

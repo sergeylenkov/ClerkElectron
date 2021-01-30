@@ -2,8 +2,6 @@ import { Element } from '../core/element';
 import { TreeMenuItem } from './item';
 import { t, strings } from '../../locales';
 
-import './index.scss';
-
 export class TreeMenu extends Element {
   constructor() {
     super('div', { className: 'tree-menu__container' });
