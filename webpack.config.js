@@ -12,6 +12,7 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.json', 'scss'],
   },
+  target: 'electron-renderer',
   module: {
     rules: [
       {

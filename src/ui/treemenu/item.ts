@@ -1,10 +1,11 @@
 import { Element } from '../core/element';
+import { Text } from '../core/text';
 
 export class TreeMenuItem extends Element {
   private readonly _content: Element;
   private readonly _selection: Element;
   private readonly _icon: Element;
-  private readonly _label: Element;
+  private readonly _label: Text;
   private readonly _arrow: Element;
 
   constructor() {
@@ -13,7 +14,7 @@ export class TreeMenuItem extends Element {
     this._content = new Element('div', { className: 'tree-menu-item__content' });
     this._selection = new Element('div', { className: 'tree-menu-item__selection' });
     this._icon = new Element('div', { className: 'tree-menu-item__icon' });
-    this._label = new Element('div', { className: 'tree-menu-item__label' });
+    this._label = new Text({ className: 'tree-menu-item__label' });
     this._arrow = new Element('div', { className: 'tree-menu-item__arrow' });
 
     this._content.appendTo(this);
@@ -29,7 +30,7 @@ export class TreeMenuItem extends Element {
   }
 
   set label(text: string) {
-    this._label.element.innerText = text;
+    this._label.text = text;
   }
 
   set expandable(expandable : boolean) {

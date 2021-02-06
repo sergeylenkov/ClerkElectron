@@ -1,9 +1,6 @@
-const electron = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const settings = require('./settings.js');
-
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
 
@@ -37,4 +34,8 @@ app.on('activate', function() {
     if (mainWindow === null) {
         createWindow()
     }
+});
+
+ipcMain.on('getAccounts', (event, arg) => {
+    event.returnValue = arg;
 });
