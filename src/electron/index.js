@@ -14,7 +14,8 @@ function createWindow() {
         webPreferences: { nodeIntegration: true }
     });
 
-    const url = `file://${path.join(__dirname, '../build/index.html')}`;
+    const url = path.join(__dirname, '../../build/index.html');
+
     mainWindow.loadURL(url);
 
     mainWindow.on('closed', function() {

@@ -3,7 +3,8 @@ import { TreeMenu } from './treemenu';
 import { Dashboard } from './dashboard';
 
 import './app.scss';
-import { getAccounts } from './data';
+import * as bridge from '../data/bridge';
+
 
 export class App {
   private readonly _container: Element;
@@ -30,7 +31,7 @@ export class App {
   }
 
   update(): void {
-    getAccounts();
+    bridge.getAccounts();
 
     this._treeMenu.update();
     this._dashboard.update();

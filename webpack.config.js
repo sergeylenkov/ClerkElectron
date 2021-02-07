@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './src/app/index.ts',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
@@ -50,7 +50,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/assets', to: 'static' }
+        { from: 'src/app/assets', to: 'static' }
       ]
     })
   ]

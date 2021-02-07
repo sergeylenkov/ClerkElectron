@@ -7,13 +7,13 @@
     "i18next": "^19.8.4",
     "sqlite3": "^4.2.0"
   },
-  "main": "src/electron.js",
+  "main": "src/electron/index.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "webpack": "webpack",
     "webpack:watch": "webpack --watch",
-    "app": "electron ./src/electron.js",
+    "app": "electron ./src/electron/index.js",
     "rebuild": "electron-rebuild -f -w sqlite3",
     "lint": "eslint -c .eslintrc --ext .ts ./src"
   },
