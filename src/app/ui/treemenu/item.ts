@@ -7,8 +7,10 @@ export class TreeMenuItem extends Element {
   private readonly _icon: Element;
   private readonly _label: Text;
   private readonly _arrow: Element;
+  private _expandable = false;
+  private _expanded = false;
 
-  constructor() {
+  constructor(name: string, icon: string, expandable?: boolean) {
     super('div', { className: 'tree-menu-item__container' });
 
     this._content = new Element('div', { className: 'tree-menu-item__content' });
@@ -23,6 +25,13 @@ export class TreeMenuItem extends Element {
     this._arrow.appendTo(this._content);
     this._icon.appendTo(this._content);
     this._label.appendTo(this._content);
+
+    this.label = name;
+    this.icon = icon;
+
+    this.expandable = expandable ? expandable : false;
+
+    this._arrow.element.addEventListener('click', this.toggleExpanded);
   }
 
   set icon(url: string) {
@@ -38,6 +47,25 @@ export class TreeMenuItem extends Element {
       this.addClass('tree-menu-item__container__expandable');
     } else {
       this.removeClass('tree-menu-item__container__expandable');
+    }
+
+    this._expandable = expandable;
+  }
+
+  set expanded(expanded: boolean) {
+    if (expanded) {
+      this.addClass('tree-menu-item__container__expanded');
+    } else {
+      this.removeClass('tree-menu-item__container__expanded');
+    }
+
+    this._expanded = expanded;
+  }
+
+  toggleExpanded = (): void => {
+    console.log('toggleExpanded');
+    if (this._expandable) {
+      this.expanded = !this._expanded;
     }
   }
 }

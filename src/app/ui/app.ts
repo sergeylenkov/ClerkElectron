@@ -5,7 +5,6 @@ import { Dashboard } from './dashboard';
 import './app.scss';
 import * as bridge from '../data/bridge';
 
-
 export class App {
   private readonly _container: Element;
   private readonly _leftPanel: Element;

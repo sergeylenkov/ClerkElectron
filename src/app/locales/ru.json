@@ -2,7 +2,10 @@
   "treeMenu": {
     "dashboard": "Обзор",
     "accounts": "Счета",
-    "reports": "Отчеты"
+    "reports": "Отчеты",
+    "receipts": "Поступления",
+    "deposits": "Депозиты",
+    "expenses": "Расходы"
   },
   "dashboard": {
     "total": "Всего",

@@ -2,7 +2,10 @@
   "treeMenu": {
     "dashboard": "Dashboard",
     "accounts": "Accounts",
-    "reports": "Reports"
+    "reports": "Reports",
+    "receipts": "Receipts",
+    "deposits": "Deposits",
+    "expenses": "Expenses"
   },
   "dashboard": {
     "total": "Total",
