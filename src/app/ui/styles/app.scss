@@ -1,15 +1,12 @@
-@import './styles/mixins.scss';
-@import './styles/index.scss';
+@import 'mixins.scss';
 
 .app {
-  &__container {
-    @include flex-row;
+  @include flex-row;
 
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-  }
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 
   &__left {
     flex-shrink: 0;
@@ -19,7 +16,7 @@
     border-right: 1px solid rgb(223, 226, 229);
   }
 
-  &_right {
+  &__right {
     flex-grow: 1;
     width: auto;
     height: 100%;

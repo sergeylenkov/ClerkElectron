@@ -11,7 +11,7 @@ export class TreeMenuItem extends Element {
   private _expanded = false;
 
   constructor(name: string, icon: string, expandable?: boolean) {
-    super('div', { className: 'tree-menu-item__container' });
+    super('li', { className: 'tree-menu-item' });
 
     this._content = new Element('div', { className: 'tree-menu-item__content' });
     this._selection = new Element('div', { className: 'tree-menu-item__selection' });
@@ -19,12 +19,12 @@ export class TreeMenuItem extends Element {
     this._label = new Text({ className: 'tree-menu-item__label' });
     this._arrow = new Element('div', { className: 'tree-menu-item__arrow' });
 
-    this._content.appendTo(this);
+    //this._content.appendTo(this);
 
-    this._selection.appendTo(this._content);
-    this._arrow.appendTo(this._content);
-    this._icon.appendTo(this._content);
-    this._label.appendTo(this._content);
+    this._selection.appendTo(this);
+    this._arrow.appendTo(this);
+    this._icon.appendTo(this);
+    this._label.appendTo(this);
 
     this.label = name;
     this.icon = icon;
@@ -44,9 +44,9 @@ export class TreeMenuItem extends Element {
 
   set expandable(expandable : boolean) {
     if (expandable) {
-      this.addClass('tree-menu-item__container__expandable');
+      this.addClass('tree-menu-item__expandable');
     } else {
-      this.removeClass('tree-menu-item__container__expandable');
+      this.removeClass('tree-menu-item__expandable');
     }
 
     this._expandable = expandable;
@@ -54,16 +54,15 @@ export class TreeMenuItem extends Element {
 
   set expanded(expanded: boolean) {
     if (expanded) {
-      this.addClass('tree-menu-item__container__expanded');
+      this.addClass('tree-menu-item_expanded');
     } else {
-      this.removeClass('tree-menu-item__container__expanded');
+      this.removeClass('tree-menu-item_expanded');
     }
 
     this._expanded = expanded;
   }
 
   toggleExpanded = (): void => {
-    console.log('toggleExpanded');
     if (this._expandable) {
       this.expanded = !this._expanded;
     }

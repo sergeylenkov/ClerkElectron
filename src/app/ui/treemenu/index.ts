@@ -10,7 +10,7 @@ export class TreeMenu extends Element {
   private readonly _expensesItem: TreeMenuItem;
 
   constructor() {
-    super('div', { className: 'tree-menu__container' });
+    super('ul', { className: 'tree-menu' });
 
     this._dashboardItem = new TreeMenuItem(t(strings.treeMenu.dashboard), 'static/menu/0.png');
     this.appendChild(this._dashboardItem);
@@ -19,13 +19,13 @@ export class TreeMenu extends Element {
     this.appendChild(this._accountsItem);
 
     this._receiptsItem = new TreeMenuItem(t(strings.treeMenu.receipts), 'static/menu/2.png', true);
-    this._accountsItem.appendChild(this._receiptsItem);
+    //this._accountsItem.appendChild(this._receiptsItem);
 
     this._depositsItem = new TreeMenuItem(t(strings.treeMenu.deposits), 'static/menu/2.png', true);
-    this._accountsItem.appendChild(this._depositsItem);
+    //this._accountsItem.appendChild(this._depositsItem);
 
     this._expensesItem = new TreeMenuItem(t(strings.treeMenu.expenses), 'static/menu/2.png', true);
-    this._accountsItem.appendChild(this._expensesItem);
+    //this._accountsItem.appendChild(this._expensesItem);
 
     const reports = new TreeMenuItem(t(strings.treeMenu.reports), 'static/menu/4.png');
     this.appendChild(reports);

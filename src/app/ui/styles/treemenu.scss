@@ -1,31 +1,25 @@
 @import 'mixins';
 
 .tree-menu {
-  &__container {
-    @include flex-column;
+  @include flex-column;
 
-    position: relative;
-    width: calc(100% + 15px);
-    max-height: 100%;
-    margin: 0 0 0 -15px;
-    overflow: auto;
-  }
+  position: relative;
+  width: 100%;
+  max-height: 100%;
+  overflow: auto;
 }
 
 .tree-menu-item {
   $self: &;
 
-  &__container {
-    @include flex-column;
+  @include flex-row;
 
-    width: 100%;
-    height: 20px;
-    padding: 0 0 0 20px;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
+  width: 100%;
+  min-height: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
 
-  &__container__expanded {
+  &_expanded {
     height: auto;
   }
 
@@ -50,7 +44,7 @@
   }
 
   &__arrow {
-    margin: auto 5px auto 0;
+    margin: auto 5px auto 5px;
     width: 12px;
     height: 12px;
     z-index: 1;
@@ -60,11 +54,11 @@
     visibility: hidden;
     transform: rotate(-90deg);
 
-    #{ $self }__container__expanded & {
+    #{ $self }_expanded & {
       transform: rotate(0deg);
     }
 
-    #{ $self }__container__expandable & {
+    #{ $self }__expandable & {
       visibility: visible;
     }
   }
@@ -85,7 +79,7 @@
     height: 20px;
     z-index: 0;
 
-    &--selected {
+    &_selected {
       background-color: rgb(219, 238, 255);
     }
 

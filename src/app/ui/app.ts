@@ -1,9 +1,9 @@
 import { Element } from './core/element';
 import { TreeMenu } from './treemenu';
 import { Dashboard } from './dashboard';
-
-import './app.scss';
 import * as bridge from '../data/bridge';
+
+import './styles/index.scss';
 
 export class App {
   private readonly _container: Element;
@@ -13,7 +13,7 @@ export class App {
   private readonly _dashboard: Dashboard;
 
   constructor(parent: HTMLElement) {
-    this._container = new Element('div', { className: 'app__container' });
+    this._container = new Element('div', { className: 'app' });
     this._container.appendTo(parent);
 
     this._leftPanel = new Element('div', { className: 'app__left' });
