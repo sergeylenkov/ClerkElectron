@@ -1,6 +1,6 @@
 const db = require('../db');
 
-export function getTransactions(from, to) {
+function getTransactions(from, to) {
     return new Promise((resolve, reject) => {
         _getTransactions(from, to).then((items) => {
             let promises = [];
@@ -22,7 +22,7 @@ export function getTransactions(from, to) {
     });
 }
 
-export function getRecents(limit) {
+function getRecents(limit) {
     return new Promise((resolve, reject) => {
         db.all(`SELECT a1.name AS from_account_name, a1.type_id AS from_type_id, a2.name AS to_account_name, a2.type_id AS to_type_id, t.*
                   FROM transactions t, accounts a1, accounts a2
@@ -55,7 +55,7 @@ export function getRecents(limit) {
     });
 }
 
-export function getDeletedCount(from, to) {
+function getDeletedCount(from, to) {
     return new Promise((resolve, reject) => {
         db.get('SELECT COUNT(*) AS count FROM transactions WHERE deleted = ?', [true], (error, row) => {
             if (error) {
@@ -120,3 +120,5 @@ function _convertRow(row) {
 
     return item;
 }
+
+module.exports = { getTransactions, getRecents, getDeletedCount };

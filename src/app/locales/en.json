@@ -5,7 +5,14 @@
     "reports": "Reports",
     "receipts": "Receipts",
     "deposits": "Deposits",
-    "expenses": "Expenses"
+    "expenses": "Expenses",
+    "debts": "Debts",
+    "budgets": "Budgets",
+    "goals": "Goals",
+    "schedulers": "Schedulers",
+    "alerts": "Alerts",
+    "tags": "Tags",
+    "trash": "Trash"
   },
   "dashboard": {
     "total": "Total",

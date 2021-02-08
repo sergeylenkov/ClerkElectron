@@ -5,7 +5,14 @@
     "reports": "Отчеты",
     "receipts": "Поступления",
     "deposits": "Депозиты",
-    "expenses": "Расходы"
+    "expenses": "Расходы",
+    "debts": "Долги",
+    "budgets": "Бюджеты",
+    "goals": "Цели",
+    "schedulers": "Планировщики",
+    "alerts": "Предупреждения",
+    "tags": "Теги",
+    "trash": "Корзина"
   },
   "dashboard": {
     "total": "Всего",

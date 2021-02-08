@@ -1,6 +1,6 @@
-import db from '../db.js';
+const db = require('../db.js');
 
-export function getAll() {
+function getAll() {
     return new Promise((resolve, reject) => {
         let accounts = [];
 
@@ -19,7 +19,7 @@ export function getAll() {
     });
 }
 
-export function getActive() {
+function getActive() {
     return new Promise((resolve, reject) => {
         let accounts = [];
 
@@ -38,7 +38,7 @@ export function getActive() {
     });
 }
 
-export function getByType(type) {
+function getByType(type) {
     return new Promise((resolve, reject) => {
         let accounts = [];
 
@@ -71,3 +71,5 @@ function _convertRow(row) {
 
     return item;
 }
+
+module.exports = { getAll, getActive, getByType };

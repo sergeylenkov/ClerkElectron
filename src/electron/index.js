@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const settings = require('./settings.js');
+const data = require('./data/data.js');
 
 let mainWindow;
 
@@ -38,5 +39,7 @@ app.on('activate', function() {
 });
 
 ipcMain.on('getAccounts', (event, arg) => {
-    event.returnValue = arg;
+    data.accounts.getAll().then((accounts) => {
+        event.returnValue = accounts;
+    });
 });
