@@ -1,75 +1,91 @@
-const db = require('../db.js');
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+const db = require("../db.js");
 
 function getAll() {
-    return new Promise((resolve, reject) => {
-        let accounts = [];
+  return new Promise((resolve, reject) => {
+    let accounts = [];
 
-        db.all('SELECT * FROM accounts a ORDER BY a.order_id', [], (error, rows) => {
-            if (error) {
-                reject(error);
-            } else {
-                rows.forEach((row) => {
-                    const account = _convertRow(row);
-                    accounts.push(account);
-                });
+    db.all(
+      "SELECT * FROM accounts a ORDER BY a.order_id",
+      [],
+      (error, rows) => {
+        if (error) {
+          reject(error);
+        } else {
+          rows.forEach((row) => {
+            const account = _convertRow(row);
+            accounts.push(account);
+          });
 
-                resolve(accounts);
-            }
-        });
-    });
+          resolve(accounts);
+        }
+      }
+    );
+  });
 }
 
 function getActive() {
-    return new Promise((resolve, reject) => {
-        let accounts = [];
+  return new Promise((resolve, reject) => {
+    let accounts = [];
 
-        db.all('SELECT * FROM accounts a WHERE active = ? ORDER BY a.order_id', [true], (error, rows) => {
-            if (error) {
-                reject(error);
-            } else {
-                rows.forEach((row) => {
-                    const account = _convertRow(row);
-                    accounts.push(account);
-                });
+    db.all(
+      "SELECT * FROM accounts a WHERE active = ? ORDER BY a.order_id",
+      [true],
+      (error, rows) => {
+        if (error) {
+          reject(error);
+        } else {
+          rows.forEach((row) => {
+            const account = _convertRow(row);
+            accounts.push(account);
+          });
 
-                resolve(accounts);
-            }
-        });
-    });
+          resolve(accounts);
+        }
+      }
+    );
+  });
 }
 
 function getByType(type) {
-    return new Promise((resolve, reject) => {
-        let accounts = [];
+  return new Promise((resolve, reject) => {
+    let accounts = [];
 
-        db.all('SELECT * FROM accounts a WHERE type_id = ? ORDER BY a.order_id', [type], (error, rows) => {
-            if (error) {
-                reject(error);
-            } else {
-                rows.forEach((row) => {
-                    const account = _convertRow(row);
-                    accounts.push(account);
-                });
+    db.all(
+      "SELECT * FROM accounts a WHERE type_id = ? ORDER BY a.order_id",
+      [type],
+      (error, rows) => {
+        if (error) {
+          reject(error);
+        } else {
+          rows.forEach((row) => {
+            const account = _convertRow(row);
+            accounts.push(account);
+          });
 
-                resolve(accounts);
-            }
-        });
-    });
+          resolve(accounts);
+        }
+      }
+    );
+  });
 }
 
 function _convertRow(row) {
-    const item = {
-        id: row.id,
-        name: row.name,
-        description: row.note,
-        type: row.type_id,
-        icon: row.icon_id,
-        creditLimit: row.credit_limit,
-        currency: row.currency_id,
-        active: Boolean(row.active)
-    };
+  const item = {
+    id: row.id,
+    name: row.name,
+    description: row.note,
+    type: row.type_id,
+    icon: row.icon_id,
+    creditLimit: row.credit_limit,
+    currency: row.currency_id,
+    active: Boolean(row.active),
+  };
 
-    return item;
+  return item;
 }
 
 module.exports = { getAll, getActive, getByType };

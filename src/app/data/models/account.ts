@@ -11,4 +11,6 @@ export interface Account {
   identifier: number;
   name: string;
   type: AccountTypes;
+  icon: number;
+  active: boolean;
 }

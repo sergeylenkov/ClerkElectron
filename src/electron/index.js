@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const settings = require('./settings.js');
@@ -17,7 +21,7 @@ function createWindow() {
 
     const url = path.join(__dirname, '../../build/index.html');
 
-    mainWindow.loadURL(url);
+    void mainWindow.loadURL(url);
 
     mainWindow.on('closed', function() {
         mainWindow = null
@@ -38,8 +42,14 @@ app.on('activate', function() {
     }
 });
 
-ipcMain.on('getAccounts', (event, arg) => {
+ipcMain.on('accounts.getAll', (event) => {
     data.accounts.getAll().then((accounts) => {
+        event.returnValue = accounts;
+    });
+});
+
+ipcMain.on('accounts.getActive', (event) => {
+    data.accounts.getActive().then((accounts) => {
         event.returnValue = accounts;
     });
 });

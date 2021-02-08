@@ -2,6 +2,7 @@ import { Element } from '../core/element';
 import { TreeMenuItem } from './item';
 import { t, strings } from '../../locales';
 import { b } from '../../utils/bem';
+import { Account, AccountTypes } from '../../data/models/account';
 
 export class TreeMenu extends Element {
   private readonly _dashboardItem: TreeMenuItem;
@@ -54,7 +55,21 @@ export class TreeMenu extends Element {
     this.appendChild(this._trashItem);
   }
 
-  update(): void {
-    //
+  update(accounts: Account[]): void {
+    const receipts = accounts.filter(el => el.type === AccountTypes.Receipts && el.active);
+    const deposits = accounts.filter(el => el.type === AccountTypes.Deposits && el.active);
+    const expenses = accounts.filter(el => el.type === AccountTypes.Expenses && el.active);
+
+    this._receiptsItem.items = receipts.map(account => {
+      return new TreeMenuItem(account.name, `static/accounts/${account.icon}.png`);
+    });
+
+    this._depositsItem.items = deposits.map(account => {
+      return new TreeMenuItem(account.name, `static/accounts/${account.icon}.png`);
+    });
+
+    this._expensesItem.items = expenses.map(account => {
+      return new TreeMenuItem(account.name, `static/accounts/${account.icon}.png`);
+    });
   }
 }

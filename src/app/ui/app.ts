@@ -1,7 +1,7 @@
 import { Element } from './core/element';
 import { TreeMenu } from './treemenu';
 import { Dashboard } from './dashboard';
-import * as bridge from '../data/bridge';
+import { getActive } from '../data/repositories/accounts';
 
 import './styles/index.scss';
 
@@ -30,9 +30,7 @@ export class App {
   }
 
   update(): void {
-    bridge.getAccounts();
-
-    this._treeMenu.update();
+    this._treeMenu.update(getActive());
     this._dashboard.update();
   }
 }
