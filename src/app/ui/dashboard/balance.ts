@@ -1,21 +1,33 @@
 import { Element } from '../core/element';
-import { Text } from '../core/text';
 import { t, strings } from '../../locales';
+import { b } from '../../utils/bem';
+import { Amount } from '../core/amount';
+
+const _block = 'dashboard-balance';
 
 export class DashboardBalance extends Element {
-  private readonly _totalLabel: Text;
-
   constructor() {
-    super('div', { className: 'dashboard-balance__container' });
-
-    const header = new Text({ className: 'dashboard-balance__header', text: t(strings.dashboard.total) });
-    this.appendChild(header);
-
-    this._totalLabel = new Text( { className: 'dashboard-balance__total' });
-    this.appendChild(this._totalLabel);
+    super('div', { className: b(_block) });
   }
 
   update(): void {
-    this._totalLabel.text = '100.0';
+    this._render();
+  }
+
+  _render(): void {
+    const amount = new Amount({ className: b(_block, { element: 'total' }), amount: 34000.00, currency: 'RUB', withFraction: true });
+
+    this._element.innerHTML = `
+      <h1>${t(strings.dashboard.total)}</h1>
+      ${amount.render()}
+      <div class=${b(_block, { element: 'content' })}>
+        <div class=${b(_block, { element: 'group' })}>
+          <h2>${t(strings.dashboard.ownFund)}</h2>
+        </div>
+        <div class=${b(_block, { element: 'group' })}>
+          <h2>${t(strings.dashboard.creditFund)}</h2>
+        </div>
+      </div>
+    `;
   }
 }

@@ -1,6 +1,8 @@
 import { Element } from '../core/element';
 import { DashboardBalance } from './balance';
-import './index.scss';
+import { b } from '../../utils/bem';
+
+const _block = 'dashboard';
 
 export class Dashboard extends Element {
   private readonly _leftPanel: Element;
@@ -8,12 +10,12 @@ export class Dashboard extends Element {
   private readonly _balancePanel: DashboardBalance;
 
   constructor() {
-    super('div', { className: 'dashboard__container' });
+    super('div', { className: b(_block) });
 
-    this._leftPanel = new Element('div', { className: 'dashboard__left' });
+    this._leftPanel = new Element('div', { className: b(_block, { element: 'left' }) });
     this.appendChild(this._leftPanel);
 
-    this._rightPanel = new Element('div', { className: 'dashboard__right' });
+    this._rightPanel = new Element('div', { className: b(_block, { element: 'right' }) });
     this.appendChild(this._rightPanel);
 
     this._balancePanel = new DashboardBalance();

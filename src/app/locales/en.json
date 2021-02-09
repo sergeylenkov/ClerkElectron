@@ -17,6 +17,7 @@
   "dashboard": {
     "total": "Total",
     "ownFund": "Own funds",
-    "creditFund": "Credit funds"
+    "creditFund": "Credit funds",
+    "accounts": "Accounts"
   }
 }
