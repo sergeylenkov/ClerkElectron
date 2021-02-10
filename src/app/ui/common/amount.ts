@@ -26,6 +26,7 @@ export class Amount extends Element {
     this._withFraction = options.withFraction;
 
     this._format();
+    this._render();
   }
 
   private _format(): void {
@@ -59,7 +60,14 @@ export class Amount extends Element {
     }
   }
 
-  render(): string {
-    return this._html;
+  private _render(): void {
+    this.element.innerHTML = this._html;
+  }
+
+  set amount(amount: number) {
+    this._amount = amount;
+
+    this._format();
+    this._render();
   }
 }

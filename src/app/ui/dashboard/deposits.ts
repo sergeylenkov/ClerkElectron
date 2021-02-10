@@ -1,5 +1,5 @@
-import { Element } from '../core/element';
-import { Header } from '../core/header';
+import { Element } from '../common/element';
+import { Header } from '../common/header';
 import { t, strings } from '../../locales';
 import { b } from '../../utils/bem';
 
@@ -13,20 +13,6 @@ export class DashboardDeposits extends Element {
   }
 
   setAccounts(accounts: Account[]): void {
+      //
   }
-
-/**
- * <div className={styles.container}>
-                <div className={styles.header}>Accounts</div>
-
-                {
-                    this.props.accounts.map((item, i) => {
-                        return (
-                            <div key={item.id} className={styles.item}>
-                                <div className={styles.name}>{item.name}</div><div className={styles.amount}>{formatAmount(item.amount, item.currency)}</div>
-                            </div>
-                        );
-                    })
-                }
-            </div>
- */
+}

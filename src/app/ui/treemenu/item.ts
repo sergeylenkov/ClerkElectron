@@ -1,5 +1,5 @@
-import { Element } from '../core/element';
-import { Text } from '../core/text';
+import { Element } from '../common/element';
+import { Text } from '../common/text';
 import { b } from '../../utils/bem';
 
 const _block = 'tree-menu-item';

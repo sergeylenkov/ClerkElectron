@@ -1,4 +1,4 @@
-import { Element } from './core/element';
+import { Element } from './common/element';
 import { TreeMenu } from './treemenu';
 import { Dashboard } from './dashboard';
 import { getActive } from '../data/repositories/accounts';

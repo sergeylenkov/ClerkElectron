@@ -1,4 +1,4 @@
-import { Element } from '../core/element';
+import { Element } from '../common/element';
 import { TreeMenuItem } from './item';
 import { t, strings } from '../../locales';
 import { b } from '../../utils/bem';

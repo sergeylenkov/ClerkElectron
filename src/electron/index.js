@@ -53,3 +53,9 @@ ipcMain.on('accounts.getActive', (event) => {
         event.returnValue = accounts;
     });
 });
+
+ipcMain.on('dashboard.getBalance', (event) => {
+    data.dashboard.getBalance().then((items) => {
+        event.returnValue = items;
+    });
+});

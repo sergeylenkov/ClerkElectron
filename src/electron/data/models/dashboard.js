@@ -14,14 +14,25 @@ function getBalance() {
             if (error) {
                 reject(error);
             } else {
-                let items = [];
+                let balance = {
+                    total: 0,
+                    own: 0,
+                    credit: 0,
+                }
 
                 rows.forEach((row) => {
-                    let item = { id: row.id, name: row.name, type: row.type_id, receipt: row.receipt, expense: row.expense, amount: (row.receipt - row.expense), credit: row.credit_limit, currency: row.currency_name };
-                    items.push(item);
+                    const amount = row.receipt - row.expense;
+
+                    if (row.credit_limit) {
+                        balance.credit = amount > 0 ? row.credit_limit : row.credit_limit - amount;
+                    } else {
+                        balance.own = balance.own + amount;
+                    }
                 });
 
-                resolve(items);
+                balance.total = balance.own + balance.credit;
+
+                resolve(balance);
             }
         });
     });
