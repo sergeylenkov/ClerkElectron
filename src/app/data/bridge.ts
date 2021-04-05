@@ -3,19 +3,13 @@ import { Account } from './models/account';
 import { DashboardBalance } from './models/dashboard';
 
 export const getAllAccounts = (): Account[] => {
-  const result = ipcRenderer.sendSync('accounts.getAll') as Account[];
-
-  return result;
+  return ipcRenderer.sendSync('accounts/all') as Account[];
 }
 
 export const getActiveAccounts = (): Account[] => {
-  const result = ipcRenderer.sendSync('accounts.getActive') as Account[];
-
-  return result;
+  return ipcRenderer.sendSync('accounts/active') as Account[];
 }
 
 export const getDashboardBalance = (): DashboardBalance => {
-  const result = ipcRenderer.sendSync('dashboard.getBalance') as DashboardBalance;
-
-  return result;
+  return ipcRenderer.sendSync('dashboard/balance') as DashboardBalance;
 }
