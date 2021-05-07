@@ -1,8 +1,9 @@
 import { Element } from '../common/element';
 import { TreeMenuItem } from './item';
 import { t, strings } from '../../locales';
-import { b } from '../../utils/bem';
+import { Bem } from '../../utils/bem';
 import { Account, AccountTypes } from '../../data/models/account';
+import { TreeMenuViewModel } from '../../data/viewmodels/TreeMenuViewModel';
 
 export class TreeMenu extends Element {
   private readonly _dashboardItem: TreeMenuItem;
@@ -17,9 +18,13 @@ export class TreeMenu extends Element {
   private readonly _alertsItem: TreeMenuItem;
   private readonly _tagsItem: TreeMenuItem;
   private readonly _trashItem: TreeMenuItem;
+  private readonly _block: Bem = new Bem('tree-menu');
+  private _viewModel: TreeMenuViewModel;
 
-  constructor() {
-    super('ul', { className: b('tree-menu') });
+  constructor(viewModel: TreeMenuViewModel) {
+    super('ul', { className: 'tree-menu' });
+
+    this._viewModel = viewModel;
 
     this._dashboardItem = new TreeMenuItem(t(strings.treeMenu.dashboard), 'static/menu/0.png');
     this.appendChild(this._dashboardItem);
@@ -53,22 +58,20 @@ export class TreeMenu extends Element {
 
     this._trashItem = new TreeMenuItem(t(strings.treeMenu.trash), 'static/menu/10.png');
     this.appendChild(this._trashItem);
+
+    this._update();
   }
 
-  update(accounts: Account[]): void {
-    const receipts = accounts.filter(el => el.type === AccountTypes.Receipts && el.active);
-    const deposits = accounts.filter(el => el.type === AccountTypes.Deposits && el.active);
-    const expenses = accounts.filter(el => el.type === AccountTypes.Expenses && el.active);
-
-    this._receiptsItem.items = receipts.map(account => {
+  private _update(): void {
+    this._receiptsItem.items = this._viewModel.getReceiptsAccount().map(account => {
       return new TreeMenuItem(account.name, `static/accounts/${account.icon}.png`);
     });
 
-    this._depositsItem.items = deposits.map(account => {
+    this._depositsItem.items = this._viewModel.getDepositsAccount().map(account => {
       return new TreeMenuItem(account.name, `static/accounts/${account.icon}.png`);
     });
 
-    this._expensesItem.items = expenses.map(account => {
+    this._expensesItem.items = this._viewModel.getExpensesAccount().map(account => {
       return new TreeMenuItem(account.name, `static/accounts/${account.icon}.png`);
     });
   }

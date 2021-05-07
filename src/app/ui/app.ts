@@ -1,7 +1,10 @@
 import { Element } from './common/element';
 import { TreeMenu } from './treemenu';
 import { Dashboard } from './dashboard';
-import { getActive } from '../data/repositories/accounts';
+import { Bem } from '../utils/bem';
+import { AccountsRepository } from '../data/repositories/accounts';
+import { BridgeProvider } from '../data/provider/BridgeProvider';
+import { TreeMenuViewModel } from '../data/viewmodels/TreeMenuViewModel';
 
 import './styles/index.scss';
 
@@ -11,18 +14,22 @@ export class App {
   private readonly _rightPanel: Element;
   private readonly _treeMenu: TreeMenu;
   private readonly _dashboard: Dashboard;
+  private readonly _block: Bem = new Bem('app');
 
   constructor(parent: HTMLElement) {
-    this._container = new Element('div', { className: 'app' });
+    this._container = new Element('div', { className: this._block.toString() });
     this._container.appendTo(parent);
 
-    this._leftPanel = new Element('div', { className: 'app__left' });
+    this._leftPanel = new Element('div', { className: this._block.getElement('left').toString() });
     this._container.appendChild(this._leftPanel);
 
-    this._rightPanel = new Element('div', { className: 'app__right' });
+    this._rightPanel = new Element('div', { className: this._block.getElement('right').toString() });
     this._container.appendChild(this._rightPanel);
 
-    this._treeMenu = new TreeMenu();
+    const repository = new AccountsRepository(new BridgeProvider());
+    const viewModel = new TreeMenuViewModel(repository);
+
+    this._treeMenu = new TreeMenu(viewModel);
     this._leftPanel.appendChild(this._treeMenu);
 
     this._dashboard = new Dashboard();
@@ -30,7 +37,6 @@ export class App {
   }
 
   update(): void {
-    this._treeMenu.update(getActive());
     this._dashboard.update();
   }
 }

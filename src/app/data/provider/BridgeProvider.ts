@@ -1,0 +1,20 @@
+import { IDataProvider } from './IDataProvider';
+import { ipcRenderer } from 'electron';
+import { Account } from '../models/account';
+import { DashboardBalance } from '../models/dashboard';
+
+class BridgeProvider implements IDataProvider {
+  public getAllAccounts(): Account[] {
+    return ipcRenderer.sendSync('accounts/all') as Account[];
+  }
+
+  public getActiveAccounts(): Account[] {
+    return ipcRenderer.sendSync('accounts/active') as Account[];
+  }
+
+  public getDashboardBalance(): DashboardBalance {
+    return ipcRenderer.sendSync('dashboard/balance') as DashboardBalance;
+  }
+}
+
+export { BridgeProvider };

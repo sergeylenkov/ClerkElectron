@@ -1,10 +1,26 @@
-import { Account } from '../models/account';
-import * as bridge from '../bridge';
+import { IDataProvider } from 'data/provider/IDataProvider';
+import { Account, AccountTypes } from '../models/account';
 
-export function getAll(): Account[] {
-  return bridge.getActiveAccounts();
+class AccountsRepository {
+  private _provider: IDataProvider;
+
+  constructor(provider: IDataProvider) {
+    this._provider = provider;
+  }
+
+  public getAll(): Account[] {
+    return this._provider.getActiveAccounts();
+  }
+
+  public getActive(): Account[] {
+    return this._provider.getActiveAccounts();
+  }
+
+  public getByType(type: AccountTypes): Account[] {
+    const accounts = this.getActive();
+
+    return accounts.filter(account => account.type === type);
+  }
 }
 
-export function getActive(): Account[] {
-  return bridge.getActiveAccounts();
-}
+export { AccountsRepository };

@@ -1,8 +1,8 @@
 import { Element } from '../common/element';
 import { Text } from '../common/text';
-import { b } from '../../utils/bem';
+import { Bem } from '../../utils/bem';
 
-const _block = 'tree-menu-item';
+const _block = new Bem('tree-menu-item');
 
 export class TreeMenuItem extends Element {
   private readonly _items: Element;
@@ -15,14 +15,14 @@ export class TreeMenuItem extends Element {
   private _expanded = false;
 
   constructor(name: string, icon: string, expandable?: boolean) {
-    super('li', { className: b(_block) });
+    super('li', { className: _block.toString() });
 
-    this._items = new Element('ul', { className: b(_block, { element: 'items' }) });
-    this._selection = new Element('div', { className: b(_block,  { element: 'selection' }) });
-    this._content = new Element('div', { className: b(_block, { element: 'content' }) });
-    this._icon = new Element('div', { className: b(_block,  { element: 'icon' }) });
-    this._label = new Text({ className: b(_block,  { element: 'label' }) });
-    this._arrow = new Element('div', { className: b(_block,  { element: 'arrow' }) });
+    this._items = new Element('ul', { className: _block.getElement('items').toString() });
+    this._selection = new Element('div', { className: _block.getElement('selection').toString() });
+    this._content = new Element('div', { className: _block.getElement('content').toString() });
+    this._icon = new Element('div', { className: _block.getElement('icon').toString() });
+    this._label = new Text({ className: _block.getElement('label').toString() });
+    this._arrow = new Element('div', { className: _block.getElement('arrow').toString() });
 
     this.appendChild(this._content);
 
@@ -47,8 +47,8 @@ export class TreeMenuItem extends Element {
     this._label.text = text;
   }
 
-  set expandable(expandable : boolean) {
-    const className = b(_block, { modificator: 'expandable' });
+  set expandable(expandable: boolean) {
+    const className = _block.addModifier('expandable').toString();
 
     if (expandable) {
       this.addClass(className);
@@ -60,7 +60,7 @@ export class TreeMenuItem extends Element {
   }
 
   set expanded(expanded: boolean) {
-    const className = b(_block, { modificator: 'expanded' });
+    const className = _block.addModifier('expanded').toString();
 
     if (expanded) {
       this.addClass(className);

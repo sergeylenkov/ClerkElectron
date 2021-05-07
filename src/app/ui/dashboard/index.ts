@@ -1,10 +1,10 @@
 import { Element } from '../common/element';
 import { Block } from '../common/block';
 import { DashboardBalanceBlock } from './balance';
-import { b } from '../../utils/bem';
+import { Bem } from '../../utils/bem';
 import { getBalance } from '../../data/repositories/dashboard';
 
-const _block = 'dashboard';
+const _block = new Bem('dashboard');
 
 export class Dashboard extends Element {
   private readonly _leftPanel: Element;
@@ -12,12 +12,12 @@ export class Dashboard extends Element {
   private readonly _balanceBlock: DashboardBalanceBlock;
 
   constructor() {
-    super('div', { className: b(_block) });
+    super('div', { className: _block.toString() });
 
-    this._leftPanel = new Block({ className: b(_block, { element: 'left' }) });
+    this._leftPanel = new Block({ className: _block.getElement('left').toString() });
     this.appendChild(this._leftPanel);
 
-    this._rightPanel = new Block({ className: b(_block, { element: 'right' }) });
+    this._rightPanel = new Block({ className: _block.getElement('right').toString() });
     this.appendChild(this._rightPanel);
 
     this._balanceBlock = new DashboardBalanceBlock();
