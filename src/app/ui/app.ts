@@ -8,7 +8,7 @@ import { TreeMenuViewModel } from '../data/viewmodels/TreeMenuViewModel';
 
 import './styles/index.scss';
 
-export class App {
+class App {
   private readonly _container: Element;
   private readonly _leftPanel: Element;
   private readonly _rightPanel: Element;
@@ -25,10 +25,10 @@ export class App {
 
     this._rightPanel = new Element('div', { className: this._block.getElement('right').toString() });
     this._container.appendChild(this._rightPanel);
-
+    console.log('1');
     const repository = new AccountsRepository(new BridgeProvider());
     const viewModel = new TreeMenuViewModel(repository);
-
+    console.log('2');
     this._treeMenu = new TreeMenu(viewModel);
     this._leftPanel.appendChild(this._treeMenu);
 
@@ -36,7 +36,9 @@ export class App {
     this._rightPanel.appendChild(this._dashboard);
   }
 
-  update(): void {
-    this._dashboard.update();
+  run(): void {
+    console.log('run');
   }
 }
+
+export { App };

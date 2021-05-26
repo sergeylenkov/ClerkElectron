@@ -1,11 +1,9 @@
 import { Element } from '../common/element';
 import { TreeMenuItem } from './item';
 import { t, strings } from '../../locales';
-import { Bem } from '../../utils/bem';
-import { Account, AccountTypes } from '../../data/models/account';
 import { TreeMenuViewModel } from '../../data/viewmodels/TreeMenuViewModel';
 
-export class TreeMenu extends Element {
+class TreeMenu extends Element {
   private readonly _dashboardItem: TreeMenuItem;
   private readonly _accountsItem: TreeMenuItem;
   private readonly _receiptsItem: TreeMenuItem;
@@ -18,7 +16,6 @@ export class TreeMenu extends Element {
   private readonly _alertsItem: TreeMenuItem;
   private readonly _tagsItem: TreeMenuItem;
   private readonly _trashItem: TreeMenuItem;
-  private readonly _block: Bem = new Bem('tree-menu');
   private _viewModel: TreeMenuViewModel;
 
   constructor(viewModel: TreeMenuViewModel) {
@@ -76,3 +73,5 @@ export class TreeMenu extends Element {
     });
   }
 }
+
+export { TreeMenu };

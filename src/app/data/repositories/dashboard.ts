@@ -1,6 +1,16 @@
+import { IDataProvider } from 'data/provider/DataProvider';
 import { DashboardBalance } from '../models/dashboard';
-import * as bridge from '../bridge';
 
-export function getBalance(): DashboardBalance {
-  return bridge.getDashboardBalance();
+class DashboardRepository {
+  private _provider: IDataProvider;
+
+  constructor(provider: IDataProvider) {
+    this._provider = provider;
+  }
+
+  public getBalance(): DashboardBalance {
+    return this._provider.getDashboardBalance();
+  }
 }
+
+export { DashboardRepository };

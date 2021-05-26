@@ -1,4 +1,4 @@
-import { IDataProvider } from 'data/provider/IDataProvider';
+import { IDataProvider } from 'data/provider/DataProvider';
 import { Account, AccountTypes } from '../models/account';
 
 class AccountsRepository {

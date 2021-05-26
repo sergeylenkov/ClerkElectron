@@ -1,11 +1,12 @@
 import { App } from './ui/app';
 import i18n from './locales';
 
+let app: App;
+
 function main() {
   void i18n.changeLanguage('en');
 
-  const app = new App(document.body);
-  app.update();
+  app = new App(document.body);
 }
 
 window.addEventListener('DOMContentLoaded', () => {

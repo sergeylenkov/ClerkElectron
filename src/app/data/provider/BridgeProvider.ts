@@ -1,4 +1,4 @@
-import { IDataProvider } from './IDataProvider';
+import { IDataProvider } from './DataProvider';
 import { ipcRenderer } from 'electron';
 import { Account } from '../models/account';
 import { DashboardBalance } from '../models/dashboard';
