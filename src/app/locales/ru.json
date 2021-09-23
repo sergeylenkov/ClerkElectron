@@ -1,0 +1,24 @@
+{
+  "treeMenu": {
+    "dashboard": "Обзор",
+    "accounts": "Счета",
+    "reports": "Отчеты",
+    "receipts": "Поступления",
+    "deposits": "Депозиты",
+    "expenses": "Расходы",
+    "debts": "Долги",
+    "budgets": "Бюджеты",
+    "goals": "Цели",
+    "schedulers": "Планировщики",
+    "alerts": "Предупреждения",
+    "tags": "Теги",
+    "trash": "Корзина"
+  },
+  "dashboard": {
+    "total": "Всего",
+    "ownFund": "Собственные средства",
+    "creditFund": "Кредитные средства",
+    "accounts": "Счета",
+    "expenses": "Расходы"
+  }
+}

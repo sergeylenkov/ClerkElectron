@@ -1,0 +1,24 @@
+{
+  "treeMenu": {
+    "dashboard": "Dashboard",
+    "accounts": "Accounts",
+    "reports": "Reports",
+    "receipts": "Receipts",
+    "deposits": "Deposits",
+    "expenses": "Expenses",
+    "debts": "Debts",
+    "budgets": "Budgets",
+    "goals": "Goals",
+    "schedulers": "Schedulers",
+    "alerts": "Alerts",
+    "tags": "Tags",
+    "trash": "Trash"
+  },
+  "dashboard": {
+    "total": "Total",
+    "ownFund": "Own funds",
+    "creditFund": "Credit funds",
+    "accounts": "Accounts",
+    "expenses": "Expenses"
+  }
+}
