@@ -9,4 +9,10 @@ import DashboardRepository from './data/repositories/dashboard';
 const database = new DBProvider('C:\\Users\\Sergey\\AppData\\Roaming\\Clerk\\Database.sqlite');
 const bridge = new Bridge(ipcMain, new AccountsRepository(database), new DashboardRepository(database));
 
-const app = new App(path.join(__dirname, '../app/index.html'), bridge);
+let url = path.join(__dirname, '../app/index.html');
+
+if (process.env.NODE_ENV === 'development') {
+  url = 'http://localhost:9000';
+}
+
+const app = new App(url, bridge);
